@@ -37,8 +37,8 @@ hash_t power_of_two(hash_t n) {
 HashMap *hashmap_init_with_options(hash_t initial_size, float load_factor, hash_func hash, is_equal_func equal) {
 	HashMap *h = malloc(sizeof(HashMap));
 	h->size = 0;
-	h->capacity = (initial_size > 0) ? power_of_two(initial_size) : 2;
-	h->load_factor = (load_factor > 0 && load_factor < 1) ? load_factor : 0.75;
+	h->capacity = (initial_size > 0) ? power_of_two(initial_size) : power_of_two(HM_DEFAULT_SIZE);
+	h->load_factor = (load_factor > 0 && load_factor < 1) ? load_factor : HM_DEFAULT_FACTOR;
 	h->resize_at = h->capacity * h->load_factor;
 	h->is_equal_func = equal;
 	h->hash_func = hash;
@@ -60,7 +60,6 @@ HashMap *hashmap_init_for_string_key(hash_t initial_size, float load_factor) {
 
 void *hashmap_get_value(HashMap *h, void *key) {
 	if (key == NULL) return NULL;
-	char *key1 = key;
 
 	hash_t hash = h->hash_func(key);
 	hash_t idx = INDEX_FROM_HASH(hash, h->capacity);
@@ -96,7 +95,6 @@ void expand_table(HashMap *h) {
 			Node *newBucket = newTable[newIdx];	//we may already have put something in the new bucket
 			newTable[newIdx] = node;	//replace this node at the bucket
 			node->next = newBucket;		//then set the next of this node to whatever was/not already there
-			char *val = node->value;
 
 			node = originalNext;
 		}
@@ -170,6 +168,7 @@ void hashmap_destroy(HashMap *h) {
 			free(toFree);
 		}
 	}
+	free(h->table);	 // this was the first memory leak in 10 weeks :(
 	free(h);
 }
 
@@ -194,7 +193,7 @@ uint32_t pointer_hash(const void *key) {
 }
 
 uint32_t java_string_hash(const void *key) {
-	char *str = key;
+	const char *str = key;
 	uint32_t h = 0;
 	for (size_t i = 0; i < strlen(str); i++) {
 		h = 31 * h + str[i];

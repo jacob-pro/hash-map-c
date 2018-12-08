@@ -10,7 +10,7 @@
 // Currently setup to work with a 32bit hash
 typedef uint32_t hash_t;
 
-#define HM_DEFAULT_FACTOR 0.75
+#define HM_DEFAULT_FACTOR 0.75f
 #define HM_DEFAULT_SIZE 32
 
 typedef struct HashMap HashMap;

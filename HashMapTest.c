@@ -17,9 +17,10 @@ void test_string_keys() {
 	HashMap *h = hashmap_init_for_string_key(HM_DEFAULT_SIZE, HM_DEFAULT_FACTOR);
 
 	//Two identical strings
-	//C doesn't do string interning so these literals should stored seperately
+	//But different addresses in memory to check that it is not the pointer that is being compared
+	//Clang (but not MSVC) seems to intern these strings into the same memory when both are in pointer notation
 	char *key1 = "key";
-	char *key2 = "key";
+	char key2[] = "key";
 	assert(key1 != key2);
 	assert(strcmp(key1, key2) == 0);
 
