@@ -3,6 +3,9 @@
 //  coms10008_week10
 //  Created by Jacob Halsey on 07/12/2018.
 //
+#ifndef HASHMAP_H
+#define HASHMAP_H
+
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -47,3 +50,5 @@ bool string_is_equal(const void *key1, const void *key2);
 
 uint32_t pointer_hash(const void *key);
 uint32_t java_string_hash(const void *key);
+
+#endif
