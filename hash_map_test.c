@@ -1,9 +1,9 @@
 //
-//  HashMapTest.c
+//  hash_map_test.c
 //  coms10008_week10
 //  Created by Jacob Halsey on 08/12/2018.
 //
-#include "HashMap.h"
+#include "hash_map.h"
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>

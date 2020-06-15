@@ -7,4 +7,7 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQU
  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -fsanitize=undefined -fsanitize=address")
 endif()
 
-add_executable("HashMapTest" "HashMap.c" "HashMapTest.c")
+add_library("hashmap" "hash_map.c")
+
+add_executable("HashMapTest" "hash_map.c" "hash_map_test.c")
+add_test (NAME HashMapTest COMMAND HashMapTest)

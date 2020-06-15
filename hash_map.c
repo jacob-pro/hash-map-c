@@ -1,9 +1,9 @@
 //
-//  HashMap.c
+//  hash_map.c
 //  coms10008_week10
 //  Created by Jacob Halsey on 07/12/2018.
 //
-#include "HashMap.h"
+#include "hash_map.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -19,8 +19,8 @@ struct HashMap {
 	hash_t capacity;	// Must be power of 2 (the length of table)
 	hash_t resize_at;
 	float load_factor;
-	hash_func hash_func;
-	is_equal_func is_equal_func;
+	HashFunc hash_func;
+	IsEqualFunc is_equal_func;
 	Node **table;
 };
 
@@ -34,7 +34,7 @@ hash_t power_of_two(hash_t n) {
 	return n << 1;
 }
 
-HashMap *hashmap_init_with_options(hash_t initial_size, float load_factor, hash_func hash, is_equal_func equal) {
+HashMap *hashmap_init_with_options(hash_t initial_size, float load_factor, HashFunc hash, IsEqualFunc equal) {
 	HashMap *h = malloc(sizeof(HashMap));
 	h->size = 0;
 	h->capacity = (initial_size > 0) ? power_of_two(initial_size) : power_of_two(HM_DEFAULT_SIZE);

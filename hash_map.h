@@ -1,5 +1,5 @@
 //
-//  HashMap.h
+//  hash_map.h
 //  coms10008_week10
 //  Created by Jacob Halsey on 07/12/2018.
 //
@@ -18,10 +18,10 @@ typedef uint32_t hash_t;
 
 typedef struct HashMap HashMap;
 
-typedef hash_t(*hash_func) (const void *key);
-typedef bool(*is_equal_func) (const void *key1, const void *key2);
+typedef hash_t(*HashFunc) (const void *key);
+typedef bool(*IsEqualFunc) (const void *key1, const void *key2);
 
-HashMap *hashmap_init_with_options(hash_t initial_size, float load_factor, hash_func hash, is_equal_func equal);
+HashMap *hashmap_init_with_options(hash_t initial_size, float load_factor, HashFunc hash, IsEqualFunc equal);
 
 HashMap *hashmap_init_for_pointer_key(hash_t initial_size, float load_factor);
 HashMap *hashmap_init_for_string_key(hash_t initial_size, float load_factor);
