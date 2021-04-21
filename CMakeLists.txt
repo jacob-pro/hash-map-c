@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 project(coms10008_week10)
+enable_testing()
 
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Dtest_lists")
 
