@@ -1,5 +1,7 @@
 # Hash Map
 
+[![Build status](https://github.com/jacob-pro/hash-map-c/actions/workflows/cmake.yml/badge.svg)](https://github.com/jacob-pro/hash-map-c/actions)
+
 Bristol COMS10008_2018 Imperative Programming (Yr 1), Coursework: Week 10, Hash
 
 ## Usage
